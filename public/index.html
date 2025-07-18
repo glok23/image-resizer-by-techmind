@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Resizer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+
+        .box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 700px;
+            max-width: 100%;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        input[type="file"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        input {
+            margin-bottom: 20px;
+        }
+
+        .message {
+            margin-top: 10px;
+            font-size: 14px;
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+        <h1>Resize and Convert Images</h1>
+
+        <!-- Image Upload Form -->
+        <form id="uploadForm" enctype="multipart/form-data">
+            <label for="images">Choose Images:</label><br>
+            <input type="file" name="images" id="images" multiple><br>
+
+            <label for="width">Width:</label>
+            <input type="number" name="width" id="width"><br>
+
+            <label for="height">Height (optional):</label>
+            <input type="number" name="height" id="height"><br>
+
+            <label for="tiny">Compress to Tiny Size:</label>
+            <input type="checkbox" name="tiny" id="tiny"><br>
+
+            <label for="webp">Convert to WEBP:</label>
+            <input type="checkbox" name="webp" id="webp"><br>
+
+            <button type="submit">Resize Images</button>
+        </form>
+
+        <!-- Response Area -->
+        <div class="response" id="responseMessage"></div>
+    </div>
+
+    <script>
+        const uploadForm = document.getElementById('uploadForm');
+        const responseMessage = document.getElementById('responseMessage');
+
+        uploadForm.onsubmit = async (event) => {
+            event.preventDefault();  // Prevent form from submitting normally
+
+            // Gather form data
+            const formData = new FormData(uploadForm);
+
+            // Log form data to ensure it's correct
+            for (let [key, value] of formData.entries()) {
+                console.log(`${key}: ${value}`);
+            }
+
+            try {
+                const response = await fetch('/resize', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();  // Parse the JSON response
+
+                if (response.ok && data.files) {
+                    let message = "Images resized successfully!";
+                    data.files.forEach(file => {
+                        message += `<br><a href="${file}" target="_blank">View Resized Image</a>`;
+                    });
+                    responseMessage.innerHTML = message;
+                } else {
+                    responseMessage.innerHTML = `Error: ${data.message || 'Something went wrong.'}`;
+                }
+            } catch (error) {
+                responseMessage.innerHTML = `Error: ${error.message || 'Network error or server not reachable'}`;
+            }
+
+        };
+    </script>
+
+</body>
+
+</html>

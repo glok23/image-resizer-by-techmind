@@ -137,3 +137,55 @@ app.post("/resize", upload.array("images", 10), async (req, res) => {
 app.listen(port, () => {
   console.log(`🚀 Server running at http://localhost:${port}`);
 });
+
+/********************************************************/
+/********************************************************/
+/********************************************************/
+
+const DELETE_INTERVAL_MINUTES = 5;
+const FILE_MAX_AGE_MINUTES = 10;
+
+/**
+ * Deletes files older than a given time from a specific folder (does not delete folder).
+ */
+function deleteOldFiles(folderPath) {
+  fs.readdir(folderPath, (err, files) => {
+    if (err) {
+      console.error(`❌ Error reading folder ${folderPath}:`, err);
+      return;
+    }
+
+    files.forEach((file) => {
+      const filePath = path.join(folderPath, file);
+      fs.stat(filePath, (err, stats) => {
+        if (err) {
+          console.error(`❌ Error reading file stats: ${filePath}`, err);
+          return;
+        }
+
+        const now = Date.now();
+        const fileAgeMinutes = (now - stats.mtimeMs) / (1000 * 60);
+
+        if (fileAgeMinutes > FILE_MAX_AGE_MINUTES) {
+          fs.unlink(filePath, (err) => {
+            if (err) {
+              console.error(`⚠️ Error deleting file: ${filePath}`, err);
+            } else {
+              console.log(`🗑️ Deleted old file: ${filePath}`);
+            }
+          });
+        }
+      });
+    });
+  });
+}
+
+// Run every 5 minutes
+setInterval(() => {
+  console.log("🧹 Running auto cleanup for old files...");
+
+  deleteOldFiles("uploads");
+  deleteOldFiles("resized");
+  deleteOldFiles("resized/webp");
+  deleteOldFiles("resized/tiny");
+}, DELETE_INTERVAL_MINUTES * 60 * 1000);

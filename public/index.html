@@ -165,6 +165,24 @@
     </div>
 
     <script>
+
+        // JavaScript to make sure only one checkbox is checked at a time
+        const tinyCheckbox = document.getElementById('tiny');
+        const webpCheckbox = document.getElementById('webp');
+
+        // Add event listeners to ensure only one checkbox is selected
+        tinyCheckbox.addEventListener('change', () => {
+            if (tinyCheckbox.checked) {
+                webpCheckbox.checked = false;  // Uncheck the other checkbox
+            }
+        });
+
+        webpCheckbox.addEventListener('change', () => {
+            if (webpCheckbox.checked) {
+                tinyCheckbox.checked = false;  // Uncheck the other checkbox
+            }
+        });
+
         const uploadForm = document.getElementById('uploadForm');
         const responseMessage = document.getElementById('responseMessage');
 

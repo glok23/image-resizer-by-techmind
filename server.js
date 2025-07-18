@@ -133,6 +133,33 @@ app.post("/resize", upload.array("images", 10), async (req, res) => {
   }
 });
 
+const archiver = require("archiver");
+
+app.post("/zip", express.json(), (req, res) => {
+  const { files } = req.body;
+
+  if (!Array.isArray(files) || files.length === 0) {
+    return res.status(400).send("No files to zip.");
+  }
+
+  res.setHeader("Content-Type", "application/zip");
+  res.setHeader(
+    "Content-Disposition",
+    "attachment; filename=resized_images.zip"
+  );
+
+  const archive = archiver("zip");
+  archive.pipe(res);
+
+  files.forEach((filePath) => {
+    const absolutePath = path.join(__dirname, filePath);
+    const fileName = path.basename(filePath);
+    archive.file(absolutePath, { name: fileName });
+  });
+
+  archive.finalize();
+});
+
 // Start server
 app.listen(port, () => {
   console.log(`🚀 Server running at http://localhost:${port}`);

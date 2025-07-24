@@ -97,7 +97,7 @@ header .logo_wrap img {
   animation: gradient 15s ease infinite;
 }
 .darkmode .box_wrap {
-  background: linear-gradient(45deg, #000000, #33cc664f);
+  background: linear-gradient(0deg, #000000, #33cc664f);
 }
 
 @keyframes gradient {

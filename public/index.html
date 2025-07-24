@@ -129,7 +129,7 @@
 
             // Log form data to ensure it's correct
             for (let [key, value] of formData.entries()) {
-                console.log(`${key}: ${value}`);
+                // console.log(`${key}: ${value}`);
             }
 
             try {
@@ -139,7 +139,7 @@
                 });
 
                 const data = await response.json();  // Parse the JSON response
-                console.log(data);
+                // console.log(data);
 
 
                 if (response.ok && data.files) {

@@ -415,7 +415,7 @@ button {
 }
 
 .img_ext_wrap label .checkmark::after {
-  content: "Tiny Size";
+  content: "Tinify";
   position: absolute;
   color: #fff;
   width: 100%;

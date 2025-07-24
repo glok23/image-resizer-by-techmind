@@ -86,7 +86,7 @@
     </div>
 
     <script>
-
+        let imgArr = [];
         // JavaScript to make sure only one checkbox is checked at a time
         const tinyCheckbox = document.getElementById('tiny');
         const webpCheckbox = document.getElementById('webp');
@@ -111,6 +111,12 @@
             event.preventDefault();  // Prevent form from submitting normally
 
             const imageInput = document.getElementById("images");
+            const dataTransfer = new DataTransfer();
+            imgArr.forEach(file => {
+                dataTransfer.items.add(file);
+            });
+            imageInput.files = dataTransfer.files;
+
             if (imageInput && imageInput.files.length > 0) {
                 document.querySelector(".preloader").style.display = "block";
             } else {
@@ -133,6 +139,8 @@
                 });
 
                 const data = await response.json();  // Parse the JSON response
+                console.log(data);
+
 
                 if (response.ok && data.files) {
                     let message = `<p style="margin-bottom:10px;">Images resized successfully!</p>`;
@@ -200,12 +208,15 @@
         // Handle the file input change event to preview images
         imageInput.addEventListener('change', function (event) {
             previewContainerWrap.style.display = "block";
-            previewContainer.innerHTML = ''; // Clear previous previews
+            // previewContainer.innerHTML = ''; // Clear previous previews
 
             // Loop through selected files
             const files = event.target.files;
             if (files) {
                 Array.from(files).forEach((file, index) => {
+                    imgArr.push(file);
+
+
                     const reader = new FileReader();
 
                     reader.onload = function (e) {

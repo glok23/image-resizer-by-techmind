@@ -211,6 +211,7 @@ button {
 
 .download_img_wrap {
   margin-top: 10px;
+  width: 100px;
 }
 
 .box form {
@@ -395,8 +396,8 @@ button {
   filter: invert(1);
 }
 .download_img_wrap > img {
-  max-width: 130px;
-  height: 70px;
+  width: 100px;
+  height: 100px;
   object-fit: cover;
   display: block;
 }
@@ -557,14 +558,13 @@ input[type="number"] {
   width: 100px; /* Adjust as per your design */
   height: 100px; /* Adjust as per your design */
   object-fit: cover;
-  border-radius: 10px;
-  border: 2px solid #ddd;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .image-preview-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 10px;
 }
 img {
   max-width: 100%;

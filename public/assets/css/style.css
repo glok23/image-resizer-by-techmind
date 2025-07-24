@@ -93,6 +93,23 @@ header .logo_wrap img {
   flex-wrap: wrap;
   flex-direction: column;
   transition: all 0.3s;
+  background: linear-gradient(45deg, #ee7752, #e73c7e);
+  animation: gradient 15s ease infinite;
+}
+.darkmode .box_wrap {
+  background: linear-gradient(45deg, #000000, #33cc664f);
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 200% 50%;
+  }
+  100% {
+    background-position: -10% 50%;
+  }
 }
 
 .box {

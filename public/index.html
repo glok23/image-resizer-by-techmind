@@ -234,10 +234,8 @@
 
                         // Add event listener to remove the image preview on click
                         crossBtn.addEventListener('click', function () {
-                            // Remove the image preview element from the DOM
                             imgWrapper.remove();
-
-                            // Remove the file from the file input
+                            imgArr.splice(index, 1);
                             const updatedFiles = Array.from(imageInput.files).filter((_, i) => i !== index);
 
                             const dataTransfer = new DataTransfer();

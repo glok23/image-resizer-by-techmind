@@ -166,7 +166,7 @@
 
                     message += `</div><br>`;
 
-                    message += `<button id="downloadAll">Download All<img src="./assets/images/download.png" alt="download"></button>`;
+                    message += `<button id="downloadAll" style="display:none;">Download All<img src="./assets/images/download.png" alt="download"></button>`;
 
                     responseMessage.style.display = "block";
                     responseMessage.innerHTML = message;
@@ -194,6 +194,10 @@
                     };
 
                     document.querySelector(".preloader").style.display = "none";
+                    console.log(document.querySelectorAll(".download_img_wrap").length);
+                    if (document.querySelectorAll(".download_img_wrap").length > 1) {
+                        document.querySelector("#downloadAll").style.display = "flex";
+                    }
                 }
                 else {
                     responseMessage.innerHTML = `Error: ${data.message || 'Something went wrong.'}`;
@@ -201,6 +205,8 @@
             } catch (error) {
                 responseMessage.innerHTML = `Error: ${error.message || 'Network error or server not reachable'}`;
             }
+
+
 
         };
 

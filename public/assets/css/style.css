@@ -89,7 +89,7 @@ header .logo_wrap img {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  min-height: calc(100vh - 70px);
+  min-height: calc(100vh - 140px);
   flex-wrap: wrap;
   flex-direction: column;
   transition: all 0.3s;
@@ -279,7 +279,7 @@ button {
   content: "W";
   position: absolute;
   top: 10px;
-  right: 10px;
+  left: 10px;
   color: #000;
   font-size: 14px;
   line-height: 1.2;
@@ -299,7 +299,7 @@ button {
   line-height: 1.6;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   transition: all 0.3s;
-  padding-right: 30px;
+  padding-left: 30px;
 }
 
 .img_ext_wrap {
@@ -484,11 +484,15 @@ input[type="number"] {
 }
 
 /* dark mode start */
-.darkmode header {
+.darkmode header,
+.darkmode footer {
   background-color: #222222;
   position: relative;
 }
 .darkmode header .logo_wrap span {
+  color: #fff;
+}
+.darkmode footer p {
   color: #fff;
 }
 .darkmode .box_wrap {
@@ -587,4 +591,24 @@ img {
 }
 .remove-preview:hover {
   background: red;
+}
+footer {
+  padding: 10px 0;
+  height: 70px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  p {
+    margin: 0;
+    font-size: 14px;
+    color: #878787;
+
+    a {
+      color: #33cc66;
+      font-weight: 600;
+      text-decoration: underline;
+    }
+  }
 }

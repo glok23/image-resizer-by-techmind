@@ -127,7 +127,7 @@ header .logo_wrap img {
 }
 
 .box_wrap {
-  padding: 100px 20px;
+  padding: 70px 20px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -283,7 +283,7 @@ button {
   margin-bottom: 20px;
   position: relative;
   /* background: red; */
-  min-height: 200px;
+  min-height: 180px;
   color: #40444f;
   text-align: center;
   border-radius: 20px;
@@ -304,9 +304,14 @@ button {
 }
 
 .input_file .inner .header {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   transition: all 0.3s;
+  color: #111;
+}
+.input_file .inner .small {
+  font-size: 14px;
+  color: #878787;
 }
 
 .input_file input {
@@ -324,7 +329,7 @@ button {
   justify-content: center;
   align-items: center;
   gap: 20px;
-  margin: 50px 0;
+  margin: 30px 0;
 }
 
 .dimentions_wrapper img {
@@ -337,22 +342,23 @@ button {
 }
 
 .dimentions_wrapper .inp_wrap::before {
-  content: "W";
+  content: "Width (px):";
   position: absolute;
-  top: 10px;
+  top: 13px;
   left: 10px;
-  color: #000;
-  font-size: 14px;
+  color: #878787;
+  font-size: 12px;
   line-height: 1.2;
   transition: all 0.3s;
+  pointer-events: none;
 }
 
 .dimentions_wrapper .inp_wrap:last-child::before {
-  content: "H";
+  content: "Height (px):";
 }
 
 .dimentions_wrapper input {
-  max-width: 100px;
+  max-width: 130px;
   padding: 7px;
   border: 2px solid #33cc66;
   border-radius: 10px;
@@ -360,15 +366,14 @@ button {
   line-height: 1.6;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   transition: all 0.3s;
-  padding-left: 30px;
+  padding-left: 80px;
 }
 
 .img_ext_wrap {
-  margin: 50px 0;
+  margin: 30px 0;
 }
 
 .img_ext_wrap {
-  margin: 50px 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -385,6 +390,10 @@ button {
   user-select: none;
   height: 30px;
   transition: all 0.3s;
+  width: 150px;
+  text-align: center;
+  justify-content: center;
+  font-size: 14px;
 }
 
 .img_ext_wrap label input {
@@ -415,7 +424,7 @@ button {
 }
 
 .img_ext_wrap label .checkmark::after {
-  content: "Tinify";
+  content: "Compress Tinify";
   position: absolute;
   color: #fff;
   width: 100%;
@@ -432,7 +441,7 @@ button {
 }
 
 .img_ext_wrap > div:last-child label .checkmark::after {
-  content: "WEBP";
+  content: "Convert to WEBP";
 }
 
 .img_ext_wrap label input:checked ~ .checkmark::after {
@@ -675,4 +684,35 @@ footer {
       text-decoration: underline;
     }
   }
+}
+
+.how_to_use {
+  margin-top: 40px;
+  padding: 20px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 10px;
+  transition: 0.25s;
+
+  h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #676767;
+    margin-bottom: 10px;
+  }
+
+  ol {
+    margin: 0;
+    padding-left: 10px;
+
+    li {
+      font-size: 13px;
+      line-height: 1.5;
+      color: #878787;
+      margin-bottom: 5px;
+    }
+  }
+}
+.darkmode .how_to_use {
+  box-shadow: rgb(203 203 203 / 20%) 0px 2px 8px 0px;
+  background: #1c1c1c;
 }

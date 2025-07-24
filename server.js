@@ -33,7 +33,11 @@ const fileFilter = (req, file, cb) => {
   else cb(new Error("Only image files are allowed (jpg, png, webp)."));
 };
 
-const upload = multer({ storage, fileFilter });
+const upload = multer({
+  storage,
+  fileFilter,
+  limits: { fileSize: 5 * 1024 * 1024 },
+});
 
 // Serve static files
 app.use("/resized", express.static(path.join(__dirname, "resized")));

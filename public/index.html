@@ -5,163 +5,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Resizer</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Poppins", sans-serif;
-        }
+    <link rel="icon" type="image/x-icon" href="./assets/images/logo.png">
 
-        body {
-            padding: 100px 20px;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #f4f4f9;
-            flex-wrap: wrap;
-        }
+    <link rel="stylesheet" href="./assets/css/style.css">
 
-        .box {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            width: 700px;
-            max-width: 100%;
-        }
-
-        h1 {
-            margin-bottom: 30px;
-            font-size: 24px;
-            font-weight: 600;
-        }
-
-        input[type="file"],
-        input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .response button {
-            background-color: #03A9F4;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        input {
-            margin-bottom: 20px;
-        }
-
-        .message {
-            margin-top: 10px;
-            font-size: 14px;
-            color: green;
-        }
-
-        .preloader span,
-        .loader {
-            font-size: 12px;
-            font-weight: 500;
-            font-family: serif;
-            width: 200px;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            font-family: "Poppins", sans-serif;
-        }
-
-        .preloader span {
-            animation: loading 0.5s linear infinite alternate;
-        }
-
-        @keyframes loading {
-            0% {
-                opacity: 0;
-            }
-
-            50% {
-                opacity: 1;
-            }
-        }
-
-
-        .preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: #ffffffe8;
-            z-index: 1;
-            display: none;
-        }
-
-        .response {
-            padding: 30px;
-            margin: 30px 0;
-            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-        }
-
-        .response img {
-            height: 100px;
-            object-fit: cover;
-        }
-    </style>
 </head>
 
 <body>
-
-    <div class="box">
+    <header>
+        <div class="logo_wrap">
+            <a href="/">
+                <img src="./assets/images/logo.png" alt="logo">
+                <span>Image Resizer</span>
+            </a>
+            <div class="theme_switcher">
+                <label class="switch">
+                    <input type="checkbox" onchange="document.body.classList.toggle('darkmode')">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+    </header>
+    <div class="box_wrap">
         <div class="preloader">
             <span>Please wait..</span>
             <img src="./loader.gif" alt="" class="loader">
         </div>
-        <h1>Resize and Convert Images</h1>
+        <div class="box">
 
-        <!-- Image Upload Form -->
-        <form id="uploadForm" enctype="multipart/form-data">
-            <label for="images">Choose Images:</label><br>
-            <input type="file" name="images" id="images" multiple><br>
 
-            <label for="width">Width:</label>
-            <input type="number" name="width" id="width"><br>
 
-            <label for="height">Height (optional):</label>
-            <input type="number" name="height" id="height"><br>
+            <!-- Image Upload Form -->
+            <form id="uploadForm" enctype="multipart/form-data">
+                <div class="input_file">
+                    <input type="file" name="images" id="images" multiple>
+                    <div class="inner">
+                        <img src="./assets/images/dropbox.svg" alt="">
+                        <p class="header">Drop your images here!</p>
+                    </div>
+                </div>
+                <div class="previewContainerWrap">
+                    <h2>Your Uploaded Images</h2>
+                    <div id="previewContainer">
+                    </div>
+                </div>
 
-            <label for="tiny">Compress to Tiny Size:</label>
-            <input type="checkbox" name="tiny" id="tiny"><br>
+                <!-- Response Area -->
+                <div class="response" id="responseMessage" style="display: none;"></div>
 
-            <label for="webp">Convert to WEBP:</label>
-            <input type="checkbox" name="webp" id="webp"><br>
+                <div class="dimentions_wrapper">
+                    <div class="inp_wrap">
+                        <input type="number" name="width" id="width" max="99999">
+                    </div>
+                    <img src="./assets/images/link.png" alt="link">
+                    <div class="inp_wrap">
+                        <input type="number" name="height" id="height" max="99999">
+                    </div>
+                </div>
+                <div class="img_ext_wrap">
+                    <div>
+                        <label for="tiny">Tiny Size
+                            <input type="checkbox" name="tiny" id="tiny" checked="checked">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div>
+                        <label for="webp">WEBP
+                            <input type="checkbox" name="webp" id="webp">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
 
-            <button type="submit">Resize Images</button>
-        </form>
+                <button type="submit">Resize Images</button>
+            </form>
 
-        <!-- Response Area -->
-        <div class="response" id="responseMessage" style="display: none;"></div>
+
+        </div>
     </div>
 
     <script>
@@ -215,7 +136,7 @@
 
                 if (response.ok && data.files) {
                     let message = `<p style="margin-bottom:10px;">Images resized successfully!</p>`;
-                    message += `<div style="display: flex; flex-wrap: wrap; gap: 10px;">`;
+                    message += `<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content:center; ">`;
 
                     const zipFiles = [];
 
@@ -224,16 +145,16 @@
                         zipFiles.push(file);
 
                         message += `
-            <div style="width: 32%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+            <div class='download_img_wrap'>
                 <img src="${file}" alt="${fileName}" style="width: 100%; border-radius: 5px; margin-bottom: 10px;" />
-                <a href="${file}" download class="download-button">⬇️ Download</a>
+                <a href="${file}" download class="download-button">Download<img src="./assets/images/download.png" alt="download"></a>
             </div>
         `;
                     });
 
                     message += `</div><br>`;
 
-                    message += `<button id="downloadAll" style="margin-top: 20px;">Download All</button>`;
+                    message += `<button id="downloadAll">Download All<img src="./assets/images/download.png" alt="download"></button>`;
 
                     responseMessage.style.display = "block";
                     responseMessage.innerHTML = message;
@@ -270,6 +191,61 @@
             }
 
         };
+
+        // Image preview functionality
+        const imageInput = document.getElementById('images');
+        const previewContainerWrap = document.querySelector('.previewContainerWrap');
+        const previewContainer = document.getElementById('previewContainer');
+
+        // Handle the file input change event to preview images
+        imageInput.addEventListener('change', function (event) {
+            previewContainerWrap.style.display = "block";
+            previewContainer.innerHTML = ''; // Clear previous previews
+
+            // Loop through selected files
+            const files = event.target.files;
+            if (files) {
+                Array.from(files).forEach((file, index) => {
+                    const reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        const imgWrapper = document.createElement('div');
+                        imgWrapper.classList.add('image-preview-wrapper');
+
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.classList.add('image-preview'); // Add a class for styling
+
+                        // Create a cross button to remove the image
+                        const crossBtn = document.createElement('span');
+                        crossBtn.classList.add('remove-preview');
+                        crossBtn.innerHTML = '&times;'; // The cross icon
+
+                        // Add event listener to remove the image preview on click
+                        crossBtn.addEventListener('click', function () {
+                            // Remove the image preview element from the DOM
+                            imgWrapper.remove();
+
+                            // Remove the file from the file input
+                            const updatedFiles = Array.from(imageInput.files).filter((_, i) => i !== index);
+
+                            const dataTransfer = new DataTransfer();
+                            updatedFiles.forEach(file => dataTransfer.items.add(file));
+
+                            imageInput.files = dataTransfer.files; // Update the file input with remaining files
+                        });
+
+                        // Append the image and cross button to the wrapper
+                        imgWrapper.appendChild(img);
+                        imgWrapper.appendChild(crossBtn);
+                        previewContainer.appendChild(imgWrapper);
+                    };
+
+                    reader.readAsDataURL(file); // Read file as a data URL
+                });
+            }
+        });
+
     </script>
 
 </body>

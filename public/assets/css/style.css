@@ -137,7 +137,7 @@ header .logo_wrap img {
   align-items: center;
   justify-content: center;
   transition: all 0.3s;
-  background: linear-gradient(45deg, #ee7752, #e73c7e);
+  background: linear-gradient(180deg, #33cc6675, #ffffff);
   animation: gradient 15s ease infinite;
 }
 .darkmode .box_wrap {
@@ -715,4 +715,13 @@ footer {
 .darkmode .how_to_use {
   box-shadow: rgb(203 203 203 / 20%) 0px 2px 8px 0px;
   background: #1c1c1c;
+  h3 {
+    color: #878787;
+  }
+
+  ol {
+    li {
+      color: #878787;
+    }
+  }
 }

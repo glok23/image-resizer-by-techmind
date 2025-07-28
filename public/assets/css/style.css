@@ -55,8 +55,8 @@ body {
       linear,
       40% 0%,
       75% 84%,
-      from(#ee7752),
-      to(#e73c7e)
+      from(#ffffff),
+      to(#33cc66)
     );
   }
   &::-webkit-scrollbar-track {
@@ -103,6 +103,10 @@ header .logo_wrap {
   gap: 10px;
   justify-content: space-between;
   position: relative;
+}
+header .logo_wrap a {
+  display: flex;
+  align-items: center;
 }
 a {
   display: inline-block;
@@ -293,20 +297,20 @@ button {
   margin-bottom: 20px;
   position: relative;
   /* background: red; */
-  min-height: 180px;
+  min-height: 160px;
   color: #40444f;
   text-align: center;
   border-radius: 20px;
   border: 2px dashed #c2bdbd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .input_file .inner {
-  position: absolute;
   width: 100%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   pointer-events: none;
+  padding: 15px;
 }
 
 .input_file .inner img {
@@ -380,7 +384,7 @@ button {
 }
 
 .img_ext_wrap {
-  margin: 30px 0;
+  margin: 20px 0;
 }
 
 .img_ext_wrap {
@@ -605,11 +609,30 @@ input[type="number"] {
   header .logo_wrap {
     justify-content: start;
   }
-  header .logo_wrap p {
-    font-size: 18px;
+  header .logo_wrap span {
+    font-size: 16px;
   }
   .box_wrap {
-    padding: 40px 20px;
+    padding: 40px 15px;
+  }
+  .box {
+    padding: 15px;
+  }
+  .dimentions_wrapper,
+  .img_ext_wrap {
+    flex-direction: column;
+  }
+  button,
+  .dimentions_wrapper > div,
+  .dimentions_wrapper input {
+    width: 100%;
+    max-width: 100%;
+  }
+  .input_file .inner .header {
+    font-size: 14px;
+  }
+  .input_file .inner .small {
+    font-size: 12px;
   }
 }
 /* dark mode end */
@@ -674,13 +697,14 @@ img {
 footer {
   position: relative;
   z-index: 999;
-  padding: 10px 0;
+  padding: 10px 15px;
   height: 70px;
   background-color: #393939;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: rgba(0, 0, 0, 0.04) 0px -3px 5px;
+  text-align: center;
 
   p {
     margin: 0;
@@ -700,8 +724,8 @@ footer {
 }
 
 .how_to_use {
-  margin-top: 40px;
-  padding: 20px;
+  margin-top: 30px;
+  padding: 15px 20px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: 10px;
   transition: 0.25s;
